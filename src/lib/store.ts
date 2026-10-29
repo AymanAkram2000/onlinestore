@@ -1,4 +1,5 @@
 import { Category, Product, Order, ShippingZone, OrderStatus } from '@/types';
+import { supabase } from './supabase';
 
 export const INITIAL_SHIPPING_ZONES: ShippingZone[] = [
   { id: 'cairo', governorate: 'القاهرة', fee: 45, estimated_delivery: '1 - 2 يوم عمل' },
@@ -110,7 +111,7 @@ export const INITIAL_PRODUCTS: Product[] = [
         sizes: [
           { id: 'sz-2-s', size_name: 'S', is_available: true },
           { id: 'sz-2-m', size_name: 'M', is_available: true },
-          { id: 'sz-2-l', size_name: 'L', is_available: false }, // نفد من المخزن لتجربة الخط المشطوب
+          { id: 'sz-2-l', size_name: 'L', is_available: false },
           { id: 'sz-2-xl', size_name: 'XL', is_available: true }
         ]
       },
@@ -118,7 +119,7 @@ export const INITIAL_PRODUCTS: Product[] = [
         id: 'col-1-navy',
         color_name: 'أزرق كحلي',
         hex_code: '#1e3a8a',
-        is_active: false, // تم إيقافه من قبل صاحب المتجر لتجربة اللون الباهت
+        is_active: false,
         photos: [
           {
             id: 'ph-3-1',
@@ -253,7 +254,7 @@ export const INITIAL_PRODUCTS: Product[] = [
         id: 'col-3-sky',
         color_name: 'أزرق سماوي',
         hex_code: '#bae6fd',
-        is_active: false, // معطل لتجربة اللون الباهت
+        is_active: false,
         photos: [
           {
             id: 'ph-8-1',
@@ -322,7 +323,6 @@ export const INITIAL_PRODUCTS: Product[] = [
   }
 ];
 
-// Helper to access LocalStorage safely
 const STORAGE_KEYS = {
   PRODUCTS: 'apparel_store_products_v1',
   CATEGORIES: 'apparel_store_categories_v1',
@@ -464,7 +464,7 @@ export class StoreRepository {
     }
 
     const zone = INITIAL_SHIPPING_ZONES.find(z => z.governorate.includes(governorateName) || governorateName.includes(z.governorate));
-    const fee = zone ? zone.fee : 50; // default 50 EGP
+    const fee = zone ? zone.fee : 50;
     return { fee, isFree: false, zone };
   }
 
@@ -484,12 +484,76 @@ export class StoreRepository {
     const list = this.getOrders();
     list.unshift(order);
     localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify(list));
+
+    // Also persist asynchronously to Supabase remote database
+    try {
+      supabase.from('orders').insert({
+        id: order.id,
+        order_number: order.order_number,
+        customer_name: order.customer_name,
+        customer_phone: order.customer_phone,
+        governorate: order.governorate,
+        shipping_address: order.shipping_address,
+        notes: order.notes || null,
+        items: order.items,
+        subtotal: order.subtotal,
+        shipping_fee: order.shipping_fee,
+        total_amount: order.total_amount,
+        payment_method: order.payment_method,
+        status: order.status
+      }).then(({ error }) => {
+        if (error) console.warn('Supabase order insert note:', error.message);
+      });
+    } catch (e) {
+      console.warn('Supabase offline or unreachable:', e);
+    }
   }
 
   static updateOrderStatus(orderId: string, status: OrderStatus): void {
     if (typeof window === 'undefined') return;
     const list = this.getOrders().map(o => o.id === orderId ? { ...o, status } : o);
     localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify(list));
+
+    // Sync status change to Supabase
+    try {
+      supabase.from('orders').update({ status }).eq('id', orderId).then(({ error }) => {
+        if (error) console.warn('Supabase status update note:', error.message);
+      });
+    } catch (e) {
+      console.warn('Supabase offline update note:', e);
+    }
+  }
+
+  // Upload an image file directly to Supabase Storage bucket 'apparel-images'
+  static async uploadImageToSupabase(file: File): Promise<string> {
+    const fileExt = file.name.split('.').pop() || 'jpg';
+    const fileName = `${Date.now()}-${Math.random().toString(36).substring(2, 9)}.${fileExt}`;
+    const filePath = `products/${fileName}`;
+
+    try {
+      const { data, error } = await supabase.storage
+        .from('apparel-images')
+        .upload(filePath, file, {
+          cacheControl: '3600',
+          upsert: false
+        });
+
+      if (error) throw error;
+
+      const { data: publicUrlData } = supabase.storage
+        .from('apparel-images')
+        .getPublicUrl(filePath);
+
+      return publicUrlData.publicUrl;
+    } catch (err: any) {
+      console.error('Supabase upload error, using local data URL fallback:', err);
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result as string);
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
+    }
   }
 
   // Seam: WhatsApp Order Message Builder

@@ -20,7 +20,9 @@ import {
   Image as ImageIcon,
   Check,
   RefreshCw,
-  Printer
+  Printer,
+  Upload,
+  Download
 } from 'lucide-react';
 
 export default function AdminDashboardPage() {
@@ -50,6 +52,7 @@ export default function AdminDashboardPage() {
   const [newColorHex, setNewColorHex] = useState('#18181b');
   const [newPhotoUrl, setNewPhotoUrl] = useState('');
   const [activeColorTabId, setActiveColorTabId] = useState<string | null>(null);
+  const [isUploadingPhoto, setIsUploadingPhoto] = useState<boolean>(false);
 
   // Notification Banner
   const [adminNotification, setAdminNotification] = useState<string | null>(null);
@@ -172,7 +175,7 @@ export default function AdminDashboardPage() {
     setNewColorName('');
   };
 
-  // Add Photo to Active Color
+  // Add Photo to Active Color by URL
   const handleAddPhotoToActiveColor = () => {
     if (!newPhotoUrl.trim() || !activeColorTabId) return;
 
@@ -198,6 +201,42 @@ export default function AdminDashboardPage() {
     setNewPhotoUrl('');
   };
 
+  // Direct File Upload from Device to Supabase Storage
+  const handleDeviceFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file || !activeColorTabId) return;
+
+    setIsUploadingPhoto(true);
+    try {
+      const publicUrl = await StoreRepository.uploadImageToSupabase(file);
+      setFormColors(formColors.map(color => {
+        if (color.id === activeColorTabId) {
+          const isFirst = color.photos.length === 0;
+          return {
+            ...color,
+            photos: [
+              ...color.photos,
+              {
+                id: `ph-${Date.now()}`,
+                url: publicUrl,
+                is_cover: isFirst,
+                sort_order: color.photos.length + 1
+              }
+            ]
+          };
+        }
+        return color;
+      }));
+      showNotification('تم رفع الصورة بنجاح وربطها باللون المختار! 📸');
+    } catch (err) {
+      console.error(err);
+      showNotification('حدث خطأ أثناء رفع الصورة.');
+    } finally {
+      setIsUploadingPhoto(false);
+      e.target.value = '';
+    }
+  };
+
   // Set Cover Photo for active color
   const handleSetCoverPhoto = (colorId: string, photoId: string) => {
     setFormColors(formColors.map(color => {
@@ -219,7 +258,6 @@ export default function AdminDashboardPage() {
     setFormColors(formColors.map(color => {
       if (color.id === colorId) {
         const filtered = color.photos.filter(p => p.id !== photoId);
-        // if removed was cover, make first cover
         if (filtered.length > 0 && !filtered.some(p => p.is_cover)) {
           filtered[0].is_cover = true;
         }
@@ -265,6 +303,41 @@ export default function AdminDashboardPage() {
     StoreRepository.updateOrderStatus(orderId, newStatus);
     loadData();
     showNotification(`تم تغيير حالة الطلب إلى "${newStatus}".`);
+  };
+
+  // Export Orders to Excel / CSV for shipping companies
+  const handleExportOrders = () => {
+    if (orders.length === 0) {
+      showNotification('لا توجد طلبات لتصديرها.');
+      return;
+    }
+
+    const headers = ['رقم الطلب', 'اسم العميل', 'رقم الهاتف', 'المحافظة', 'العنوان', 'المنتجات', 'المجموع الفرعي', 'الشحن', 'الإجمالي النهائي', 'طريقة الدفع', 'الحالة', 'تاريخ الطلب'];
+    const rows = orders.map(o => [
+      o.order_number,
+      `"${o.customer_name}"`,
+      `"${o.customer_phone}"`,
+      `"${o.governorate}"`,
+      `"${o.shipping_address}"`,
+      `"${o.items.map(i => `${i.product_title} (${i.color_name}-${i.size_name})x${i.quantity}`).join(' | ')}"`,
+      o.subtotal,
+      o.shipping_fee,
+      o.total_amount,
+      o.payment_method === 'cod' ? 'عند الاستلام' : 'تحويل محفظة/إنستاباي',
+      o.status,
+      `"${new Date(o.created_at).toLocaleString('ar-EG')}"`
+    ]);
+
+    const csvContent = '\uFEFF' + [headers.join(','), ...rows.map(r => r.join(','))].join('\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.setAttribute('href', url);
+    link.setAttribute('download', `orders-${new Date().toISOString().slice(0, 10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    showNotification('تم تصدير ملف الطلبات (Excel/CSV) بنجاح! 📥');
   };
 
   return (
@@ -513,21 +586,32 @@ export default function AdminDashboardPage() {
         {/* ================= TAB 2: ORDERS MANAGEMENT ================= */}
         {activeTab === 'orders' && (
           <div className="space-y-6">
-            <div className="bg-white p-5 rounded-2xl border border-neutral-200 shadow-xs flex items-center justify-between">
+            <div className="bg-white p-5 rounded-2xl border border-neutral-200 shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
               <div>
-                <h2 className="text-base font-bold text-neutral-900">سجل طلبات العملاء</h2>
+                <h2 className="text-base font-bold text-neutral-900">سجل طلبات العملاء ({orders.length})</h2>
                 <p className="text-xs text-neutral-500 mt-0.5">
                   تابع حالات الشحن، وتواصل بنقرة واحدة مع العميل عبر واتساب لتأكيد موعد التسليم.
                 </p>
               </div>
 
-              <button
-                onClick={loadData}
-                className="px-3 py-1.5 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-xs font-bold rounded-lg transition flex items-center gap-1.5"
-              >
-                <RefreshCw className="w-3.5 h-3.5" />
-                <span>تحديث</span>
-              </button>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={handleExportOrders}
+                  className="px-3.5 py-2 bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-bold rounded-xl transition flex items-center gap-1.5 shadow-xs"
+                  title="تصدير ملف إكسل لشركات الشحن"
+                >
+                  <Download className="w-3.5 h-3.5" />
+                  <span>تصدير الطلبات (Excel)</span>
+                </button>
+
+                <button
+                  onClick={loadData}
+                  className="px-3 py-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 text-xs font-bold rounded-xl transition flex items-center gap-1.5"
+                >
+                  <RefreshCw className="w-3.5 h-3.5" />
+                  <span>تحديث</span>
+                </button>
+              </div>
             </div>
 
             {orders.length === 0 ? (
@@ -853,22 +937,41 @@ export default function AdminDashboardPage() {
                         </label>
                       </div>
 
-                      {/* Add photo by URL */}
-                      <div className="flex items-center gap-2">
-                        <input
-                          type="url"
-                          value={newPhotoUrl}
-                          onChange={(e) => setNewPhotoUrl(e.target.value)}
-                          placeholder="ضع رابط صورة عالية الجودة لهذا اللون (Unsplash أو رابط سحابي)..."
-                          className="flex-1 px-3 py-1.5 border border-neutral-300 rounded-lg text-xs"
-                        />
-                        <button
-                          type="button"
-                          onClick={handleAddPhotoToActiveColor}
-                          className="px-3.5 py-1.5 bg-neutral-900 text-white rounded-lg text-xs font-bold hover:bg-neutral-800"
-                        >
-                          + ربط الصورة
-                        </button>
+                      {/* Photo inputs: Both URL input AND Device File Upload */}
+                      <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2">
+                        <div className="flex-1 flex items-center gap-2">
+                          <input
+                            type="url"
+                            value={newPhotoUrl}
+                            onChange={(e) => setNewPhotoUrl(e.target.value)}
+                            placeholder="ضع رابط صورة (URL)..."
+                            className="flex-1 px-3 py-2 border border-neutral-300 rounded-lg text-xs"
+                          />
+                          <button
+                            type="button"
+                            onClick={handleAddPhotoToActiveColor}
+                            className="px-3.5 py-2 bg-neutral-900 text-white rounded-lg text-xs font-bold hover:bg-neutral-800"
+                          >
+                            + إضافة
+                          </button>
+                        </div>
+
+                        <div className="text-center sm:text-right text-[11px] text-neutral-400 font-bold px-1">
+                          أو
+                        </div>
+
+                        {/* Direct File Uploader to Supabase */}
+                        <label className="flex items-center justify-center gap-2 px-4 py-2 bg-neutral-100 hover:bg-neutral-200 text-neutral-800 rounded-lg text-xs font-bold cursor-pointer transition border border-neutral-300 shadow-xs">
+                          <Upload className="w-4 h-4 text-emerald-600" />
+                          <span>{isUploadingPhoto ? 'جاري الرفع سحابياً...' : 'رفع من جهازك 📁'}</span>
+                          <input
+                            type="file"
+                            accept="image/*"
+                            disabled={isUploadingPhoto}
+                            onChange={handleDeviceFileUpload}
+                            className="hidden"
+                          />
+                        </label>
                       </div>
 
                       {/* Photos grid */}
