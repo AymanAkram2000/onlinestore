@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-cairo: 'Cairo', system-ui, -apple-system, sans-serif;
+  }
+
+  * {
+    border-color: #e5e7eb;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: #fafafa;
+    color: #111827;
+    font-family: var(--font-cairo);
+    direction: rtl;
+    text-align: right;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+  background: #c7c7c7;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #999;
+}
+
+/* Luxury Card Transitions */
+.luxury-card {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.luxury-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+}
+
+/* Color swatch hover glow */
+.swatch-ring {
+  transition: all 0.2s ease-in-out;
+}
+.swatch-ring:hover {
+  transform: scale(1.15);
+}
+
+/* Faded Out-of-Stock State */
+.variant-disabled {
+  opacity: 0.35;
+  filter: grayscale(85%);
+  cursor: not-allowed;
+  position: relative;
+}
+.variant-disabled::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1.5px;
+  background: #ef4444;
+  transform: rotate(-25deg);
+}
