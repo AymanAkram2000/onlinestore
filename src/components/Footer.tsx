@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { ShieldCheck, Truck, RefreshCw, MessageSquare } from 'lucide-react';
+import { ShieldCheck, Truck, RefreshCw, MessageSquare, Heart } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -25,18 +25,18 @@ export default function Footer() {
               <ShieldCheck className="w-6 h-6" />
             </div>
             <div>
-              <h4 className="text-sm font-bold text-white">قطن مصري وخامات ممتازة</h4>
-              <p className="text-xs text-neutral-400">معاينة قبل الاستلام بنسبة 100%</p>
+              <h4 className="text-sm font-bold text-white">خامات ساترة لا تشف 100%</h4>
+              <p className="text-xs text-neutral-400">معاينة القطعة أمام المندوب قبل الدفع</p>
             </div>
           </div>
 
           <div className="flex items-center gap-4 justify-center sm:justify-start">
-            <div className="w-12 h-12 rounded-full bg-neutral-800 flex items-center justify-center text-blue-400">
+            <div className="w-12 h-12 rounded-full bg-neutral-800 flex items-center justify-center text-rose-400">
               <RefreshCw className="w-6 h-6" />
             </div>
             <div>
-              <h4 className="text-sm font-bold text-white">استبدال سهل ومريح</h4>
-              <p className="text-xs text-neutral-400">إمكانية تبديل المقاسات خلال 14 يوماً</p>
+              <h4 className="text-sm font-bold text-white">استبدال سهل للمقاسات</h4>
+              <p className="text-xs text-neutral-400">إمكانية تبديل المقاس بكل سهولة ويسر</p>
             </div>
           </div>
 
@@ -45,8 +45,8 @@ export default function Footer() {
               <MessageSquare className="w-6 h-6" />
             </div>
             <div>
-              <h4 className="text-sm font-bold text-white">دعم وتأكيد عبر واتساب</h4>
-              <p className="text-xs text-neutral-400">خدمة عملاء مباشرة على مدار الساعة</p>
+              <h4 className="text-sm font-bold text-white">تأكيد مباشر عبر واتساب</h4>
+              <p className="text-xs text-neutral-400">خدمة عملاء مباشرة للإجابة على استفساراتك</p>
             </div>
           </div>
         </div>
@@ -56,28 +56,31 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <span className="font-extrabold text-2xl tracking-tighter text-white">
-              ATELIER
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="font-black text-2xl tracking-tighter text-white">
+                HAYAA
+              </span>
+              <span className="text-xs font-bold text-rose-400">حياء • أزياء محتشمة</span>
+            </div>
             <p className="text-xs text-neutral-400 leading-relaxed">
-              متجر أزياء مصري فخم يقدم تشكيلات ملابس عصرية بخامات عالية الجودة وقصات مبتكرة تواكب أحدث خطوط الموضة العالمية.
+              براند مصري راقٍ متخصص في تصميم أزياء المحجبات والمنقبات، عبايات كريب خليجية، خمارات ونقابات إسلامية، ومجموعات الطرح والإكسسوارات الفاخرة بأعلى مواصفات الحشمة والوقار.
             </p>
           </div>
 
           <div>
-            <h5 className="text-sm font-bold text-white mb-4">أقسام الملابس</h5>
+            <h5 className="text-sm font-bold text-white mb-4">أقسام المتجر</h5>
             <ul className="space-y-2 text-xs text-neutral-400">
-              <li><Link href="/catalog?category=hoodies" className="hover:text-white transition">هوديز وسويت شيرت</Link></li>
-              <li><Link href="/catalog?category=t-shirts" className="hover:text-white transition">تيشيرتات بيسك وثقيلة</Link></li>
-              <li><Link href="/catalog?category=shirts" className="hover:text-white transition">قمصان كتان وكلاسيك</Link></li>
-              <li><Link href="/catalog?category=pants" className="hover:text-white transition">بناطيل كارجو وستريت وير</Link></li>
+              <li><Link href="/catalog?category=abayas-dresses" className="hover:text-white transition">عبايات ودريسات محجبات</Link></li>
+              <li><Link href="/catalog?category=niqab-khimar" className="hover:text-white transition">نقابات وخمارات إسلامية</Link></li>
+              <li><Link href="/catalog?category=tarha-scarves" className="hover:text-white transition">طرح وشالات فاخرة</Link></li>
+              <li><Link href="/catalog?category=accessories" className="hover:text-white transition">إكسسوارات الحجاب وبندانات</Link></li>
             </ul>
           </div>
 
           <div>
             <h5 className="text-sm font-bold text-white mb-4">روابط سريعة</h5>
             <ul className="space-y-2 text-xs text-neutral-400">
-              <li><Link href="/catalog" className="hover:text-white transition">جميع المنتجات</Link></li>
+              <li><Link href="/catalog" className="hover:text-white transition">جميع المعروضات</Link></li>
               <li><Link href="/admin" className="hover:text-white transition">لوحة تحكم صاحب المتجر</Link></li>
               <li><Link href="/checkout" className="hover:text-white transition">سلة الشراء وإنهاء الطلب</Link></li>
             </ul>
@@ -86,7 +89,7 @@ export default function Footer() {
           <div>
             <h5 className="text-sm font-bold text-white mb-4">طرق الدفع والتأكيد</h5>
             <div className="space-y-2 text-xs text-neutral-400">
-              <p>• الدفع عند الاستلام (COD)</p>
+              <p>• الدفع عند الاستلام نقداً (COD)</p>
               <p>• التحويل المباشر عبر إنستاباي (InstaPay)</p>
               <p>• فودافون كاش ومحافظ المحمول</p>
               <div className="pt-2">
@@ -99,7 +102,7 @@ export default function Footer() {
         </div>
 
         <div className="mt-12 pt-8 border-t border-neutral-800 text-center text-xs text-neutral-500">
-          جميع الحقوق محفوظة © {new Date().getFullYear()} ATELIER Fashion Store.
+          جميع الحقوق محفوظة © {new Date().getFullYear()} HAYAA Modest Fashion Store.
         </div>
       </div>
     </footer>

@@ -5,10 +5,16 @@ export type ApparelSize =
   | 'L' 
   | 'XL' 
   | 'XXL' 
-  | '3XL' 
-  | 'Oversize' 
   | 'Free Size' 
-  | 'No Size' 
+  | 'No Size'
+  | '52 (طول 150-155 سم)'
+  | '54 (طول 155-160 سم)'
+  | '56 (طول 160-165 سم)'
+  | '58 (طول 165-170 سم)'
+  | '60 (طول 170-175 سم)'
+  | 'مقاس 1 (يلبس حتى 70 كجم)'
+  | 'مقاس 2 (يلبس حتى 90 كجم)'
+  | 'مقاس 3 (يلبس حتى 110 كجم)'
   | string;
 
 export interface Category {
@@ -29,7 +35,7 @@ export interface Photo {
 export interface SizeVariant {
   id: string;
   size_name: ApparelSize;
-  is_available: boolean; // Strikethrough / Out-of-stock toggle within color
+  is_available: boolean;
   stock_quantity?: number;
 }
 
@@ -52,13 +58,13 @@ export interface Product {
   category_name?: string;
   base_price: number;
   compare_at_price?: number;
-  badge?: 'وصل حديثاً' | 'الأكثر مبيعاً' | 'خصم مميز' | string;
+  badge?: 'وصل حديثاً' | 'الأكثر مبيعاً' | 'خصم مميز' | 'طقم متكامل' | string;
   colors: ColorVariant[];
   created_at: string;
 }
 
 export interface CartItem {
-  id: string; // unique item id: product_id + color_id + size_id
+  id: string;
   product_id: string;
   product_title: string;
   product_slug: string;

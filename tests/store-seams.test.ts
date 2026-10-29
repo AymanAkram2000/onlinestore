@@ -1,11 +1,11 @@
-import { describe, it, expect, beforeEach } from 'vitest';
-import { StoreRepository, FREE_SHIPPING_THRESHOLD, INITIAL_PRODUCTS } from '../src/lib/store';
+import { describe, it, expect } from 'vitest';
+import { StoreRepository, INITIAL_PRODUCTS } from '../src/lib/store';
 import { Order } from '../src/types';
 
-describe('Apparel Store Core Seams', () => {
+describe('Modest Apparel Store Core Seams', () => {
 
   describe('Catalog Seam', () => {
-    it('returns all products when no filter is provided', () => {
+    it('returns all modest products when no filter is provided', () => {
       const products = StoreRepository.getProducts();
       expect(products.length).toBeGreaterThan(0);
       expect(products[0]).toHaveProperty('title');
@@ -13,21 +13,21 @@ describe('Apparel Store Core Seams', () => {
     });
 
     it('filters products correctly by category slug', () => {
-      const hoodies = StoreRepository.getProducts({ categorySlug: 'hoodies' });
-      expect(hoodies.length).toBeGreaterThan(0);
-      expect(hoodies.every(p => p.category_id === 'hoodies')).toBe(true);
+      const abayas = StoreRepository.getProducts({ categorySlug: 'abayas-dresses' });
+      expect(abayas.length).toBeGreaterThan(0);
+      expect(abayas.every(p => p.category_id === 'abayas-dresses')).toBe(true);
     });
 
     it('filters products correctly by search query', () => {
-      const results = StoreRepository.getProducts({ search: 'هودي' });
+      const results = StoreRepository.getProducts({ search: 'عباية' });
       expect(results.length).toBeGreaterThan(0);
-      expect(results.some(p => p.title.includes('هودي'))).toBe(true);
+      expect(results.some(p => p.title.includes('عباية'))).toBe(true);
     });
 
     it('retrieves single product by its slug', () => {
-      const product = StoreRepository.getProductBySlug('minimal-heavyweight-hoodie');
+      const product = StoreRepository.getProductBySlug('royal-modest-abaya');
       expect(product).toBeDefined();
-      expect(product?.title).toContain('هودي أوفرسايز فخم');
+      expect(product?.title).toContain('عباية');
     });
   });
 
@@ -90,32 +90,32 @@ describe('Apparel Store Core Seams', () => {
   describe('Order & WhatsApp Message Seam', () => {
     it('generates properly formatted and URL-encoded WhatsApp confirmation link', () => {
       const mockOrder: Order = {
-        id: 'ord-test-1',
-        order_number: 'ATL-9988',
-        customer_name: 'محمد خالد',
-        customer_phone: '01011223344',
-        governorate: 'الجيزة',
-        shipping_address: 'الدقي، شارع التحرير',
+        id: 'ord-test-abaya',
+        order_number: 'ATL-7711',
+        customer_name: 'فاطمة الزهراء',
+        customer_phone: '01055667788',
+        governorate: 'القاهرة',
+        shipping_address: 'المعادي، شارع النصر',
         notes: 'الرجاء الاتصال قبل التوصيل',
         items: [
           {
             id: 'item-1',
-            product_id: 'prod-1',
-            product_title: 'هودي أوفرسايز',
-            product_slug: 'hoodie',
+            product_id: 'prod-abaya-1',
+            product_title: 'عباية إسلامية كريب ملكي',
+            product_slug: 'royal-modest-abaya',
             color_id: 'col-black',
-            color_name: 'أسود',
-            color_hex: '#000000',
-            size_id: 'sz-l',
-            size_name: 'L',
-            unit_price: 690,
-            quantity: 2,
+            color_name: 'أسود ملكي',
+            color_hex: '#111111',
+            size_id: 'sz-56',
+            size_name: '56',
+            unit_price: 790,
+            quantity: 1,
             image_url: 'https://example.com/img.jpg'
           }
         ],
-        subtotal: 1380,
-        shipping_fee: 0,
-        total_amount: 1380,
+        subtotal: 790,
+        shipping_fee: 45,
+        total_amount: 835,
         payment_method: 'cod',
         status: 'pending',
         created_at: new Date().toISOString()
@@ -125,13 +125,12 @@ describe('Apparel Store Core Seams', () => {
       expect(url).toContain('https://wa.me/201099999999?text=');
       
       const decodedText = decodeURIComponent(url);
-      expect(decodedText).toContain('ATL-9988');
-      expect(decodedText).toContain('محمد خالد');
-      expect(decodedText).toContain('01011223344');
-      expect(decodedText).toContain('هودي أوفرسايز (أسود - مقاس: L) × 2');
-      expect(decodedText).toContain('الدفع عند الاستلام');
-      expect(decodedText).toContain('1380 ج.م');
-      expect(decodedText).toContain('شحن: مجاني 🎉');
+      expect(decodedText).toContain('ATL-7711');
+      expect(decodedText).toContain('فاطمة الزهراء');
+      expect(decodedText).toContain('01055667788');
+      expect(decodedText).toContain('عباية إسلامية كريب ملكي');
+      expect(decodedText).toContain('أسود ملكي');
+      expect(decodedText).toContain('835 ج.م');
     });
   });
 

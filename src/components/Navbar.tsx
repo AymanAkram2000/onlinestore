@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { ShoppingBag, Search, ShieldCheck, Menu, X, ArrowLeft } from 'lucide-react';
+import { ShoppingBag, Search, ShieldCheck, Menu, X, ArrowLeft, Heart } from 'lucide-react';
 import { useCart } from '@/context/CartContext';
 
 export default function Navbar() {
@@ -10,10 +10,10 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-neutral-200/80 transition-all">
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-neutral-200/80 transition-all">
       {/* Top Announcement Bar */}
-      <div className="bg-neutral-900 text-neutral-100 text-xs py-1.5 px-4 text-center font-medium tracking-wide">
-        <span>✨ شحن مجاني لجميع محافظات مصر للطلبات فوق 999 ج.م • الدفع عند الاستلام متاح</span>
+      <div className="bg-neutral-950 text-neutral-100 text-xs py-1.5 px-4 text-center font-medium tracking-wide">
+        <span>✨ شحن مجاني لكافة المحافظات فوق 999 ج.م • خامات ساترة غير شفافة 100% • معاينة قبل الدفع</span>
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -30,23 +30,23 @@ export default function Navbar() {
             </button>
 
             <Link href="/" className="flex items-center gap-2 group">
-              <span className="font-extrabold text-2xl tracking-tighter text-neutral-950 group-hover:opacity-80 transition">
-                ATELIER
+              <span className="font-black text-2xl tracking-tighter text-neutral-950 group-hover:opacity-85 transition">
+                HAYAA
               </span>
-              <span className="text-xs font-semibold px-2 py-0.5 bg-neutral-100 border border-neutral-300 rounded text-neutral-800 tracking-wider">
-                أزياء فاخرة
+              <span className="text-[11px] font-bold px-2 py-0.5 bg-rose-50 border border-rose-200 rounded-full text-rose-900 tracking-wide">
+                حياء • أزياء محتشمة
               </span>
             </Link>
           </div>
 
           {/* Center: Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-neutral-700">
+          <nav className="hidden md:flex items-center gap-7 text-xs lg:text-sm font-bold text-neutral-700">
             <Link href="/" className="hover:text-black transition">الرئيسية</Link>
-            <Link href="/catalog" className="hover:text-black transition">جميع المنتجات</Link>
-            <Link href="/catalog?category=hoodies" className="hover:text-black transition">هوديز</Link>
-            <Link href="/catalog?category=t-shirts" className="hover:text-black transition">تيشيرتات</Link>
-            <Link href="/catalog?category=shirts" className="hover:text-black transition">قمصان</Link>
-            <Link href="/catalog?category=pants" className="hover:text-black transition">بناطيل</Link>
+            <Link href="/catalog" className="hover:text-black transition">جميع التشكيلات</Link>
+            <Link href="/catalog?category=abayas-dresses" className="hover:text-black transition">عبايات ودريسات</Link>
+            <Link href="/catalog?category=niqab-khimar" className="hover:text-black transition">نقابات وخمارات</Link>
+            <Link href="/catalog?category=tarha-scarves" className="hover:text-black transition">طرح وشالات</Link>
+            <Link href="/catalog?category=accessories" className="hover:text-black transition">إكسسوارات الحجاب</Link>
           </nav>
 
           {/* Left: Actions (Admin & Cart) */}
@@ -92,43 +92,43 @@ export default function Navbar() {
             onClick={() => setMobileMenuOpen(false)}
             className="block py-2 text-base font-semibold text-neutral-900 border-b border-neutral-100"
           >
-            جميع المنتجات (الكتالوج)
+            جميع الملابس والمنتجات
           </Link>
           <div className="grid grid-cols-2 gap-2 pt-2">
             <Link 
-              href="/catalog?category=hoodies" 
+              href="/catalog?category=abayas-dresses" 
               onClick={() => setMobileMenuOpen(false)}
-              className="p-2.5 bg-neutral-50 rounded-lg text-sm font-medium text-neutral-800"
+              className="p-2.5 bg-neutral-50 rounded-lg text-xs font-bold text-neutral-800"
             >
-              هوديز وسويت شيرت
+              عبايات ودريسات محجبات
             </Link>
             <Link 
-              href="/catalog?category=t-shirts" 
+              href="/catalog?category=niqab-khimar" 
               onClick={() => setMobileMenuOpen(false)}
-              className="p-2.5 bg-neutral-50 rounded-lg text-sm font-medium text-neutral-800"
+              className="p-2.5 bg-neutral-50 rounded-lg text-xs font-bold text-neutral-800"
             >
-              تيشيرتات صيفية
+              نقابات وخمارات إسلامية
             </Link>
             <Link 
-              href="/catalog?category=shirts" 
+              href="/catalog?category=tarha-scarves" 
               onClick={() => setMobileMenuOpen(false)}
-              className="p-2.5 bg-neutral-50 rounded-lg text-sm font-medium text-neutral-800"
+              className="p-2.5 bg-neutral-50 rounded-lg text-xs font-bold text-neutral-800"
             >
-              قمصان كلاسيك وكاجوال
+              طرح وشالات فاخرة
             </Link>
             <Link 
-              href="/catalog?category=pants" 
+              href="/catalog?category=accessories" 
               onClick={() => setMobileMenuOpen(false)}
-              className="p-2.5 bg-neutral-50 rounded-lg text-sm font-medium text-neutral-800"
+              className="p-2.5 bg-neutral-50 rounded-lg text-xs font-bold text-neutral-800"
             >
-              بناطيل وكارجو
+              إكسسوارات وبندانات
             </Link>
           </div>
           <div className="pt-2">
             <Link 
               href="/admin" 
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center justify-center gap-2 w-full py-2.5 bg-neutral-900 text-white text-sm font-bold rounded-xl"
+              className="flex items-center justify-center gap-2 w-full py-2.5 bg-neutral-900 text-white text-xs font-bold rounded-xl"
             >
               <ShieldCheck className="w-4 h-4 text-emerald-400" />
               الدخول للوحة تحكم صاحب المتجر

@@ -1,10 +1,17 @@
--- Seed Categories
+-- Clear previous demo data
+DELETE FROM public.size_variants;
+DELETE FROM public.color_photos;
+DELETE FROM public.color_variants;
+DELETE FROM public.products;
+DELETE FROM public.categories;
+
+-- Seed Modest Fashion Categories
 INSERT INTO public.categories (id, name, slug, image_url, description)
 VALUES 
-  ('hoodies', 'هوديز وسويت شيرت', 'hoodies', 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80', 'تشكيلة الهوديز الفاخرة بقصات أوفرسايز وخامات شتوية ممتازة'),
-  ('t-shirts', 'تيشيرتات صيفية', 't-shirts', 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80', 'تيشيرتات قطن مصري 100% بأوزان ثقيلة وملمس فائق النعومة'),
-  ('shirts', 'قمصان كلاسيك وكاجوال', 'shirts', 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=600&q=80', 'قمصان كتان وخامات مريحة تناسب الإطلالات اليومية والرسمية'),
-  ('pants', 'بناطيل وكارجو', 'pants', 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=600&q=80', 'بناطيل كارجو وعصرية مصممة لأقصى درجات الراحة والأناقة')
+  ('abayas-dresses', 'عبايات ودريسات محجبات', 'abayas-dresses', 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=600&q=80', 'عبايات خليجية ملكي ودريسات كلوش قطن وكتان بقصات سابغة ومحتشمة'),
+  ('niqab-khimar', 'نقابات وخمارات إسلامية', 'niqab-khimar', 'https://images.unsplash.com/photo-1609357605129-26f69add5d6e?auto=format&fit=crop&w=600&q=80', 'خمارات ماليزية وسعودية ونقابات تاندة ومقواة بأقمشة كريب مريحة وساترة'),
+  ('tarha-scarves', 'طرح وشالات فاخرة', 'tarha-scarves', 'https://images.unsplash.com/photo-1617922001439-4a2e6562f328?auto=format&fit=crop&w=600&q=80', 'طرح شيفون كريب ليزر، قطن كويتي بيور، وشالات كشمير شتوية ناعمة'),
+  ('accessories', 'إكسسوارات الحجاب وبندانات', 'accessories', 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=600&q=80', 'دبابيس مغناطيسية ضد التلف، بندانات قطن سوري، معاصم وجوانتيات شرعية')
 ON CONFLICT (id) DO NOTHING;
 
 -- Seed Shipping Zones
@@ -18,46 +25,43 @@ VALUES
   ('redsea', 'البحر الأحمر وجنوب سيناء', 90, '3 - 5 أيام عمل')
 ON CONFLICT (id) DO NOTHING;
 
--- Seed Products
+-- Seed Modest Products
 INSERT INTO public.products (id, title, slug, description, category_id, category_name, base_price, compare_at_price, badge)
 VALUES
-  ('prod-1', 'هودي أوفرسايز فخم - Minimal Heavyweight Hoodie', 'minimal-heavyweight-hoodie', 'هودي مصنع من أجود خيوط القطن الممشط المبطن بالصوف الناعم بوزن 420 GSM. قصة عصرية فضفاضة تعطي مظهراً راقياً ومريحاً ومقاوماً للغسيل المتكرر.', 'hoodies', 'هوديز وسويت شيرت', 690, 850, 'الأكثر مبيعاً'),
-  ('prod-2', 'تيشيرت بيسك قطن مصري 240 GSM - Premium Heavyweight Tee', 'premium-heavyweight-tee', 'قطعة أساسية لا غنى عنها في خزانة ملابسك، مصنوعة من قطن مصري أصيل طويل التيلة بنسبة 100%. ياقة متينة وياقة مزدوجة الخياطة تحافظ على مظهرها بعد كل غسلة.', 't-shirts', 'تيشيرتات صيفية', 390, 480, 'وصل حديثاً'),
-  ('prod-3', 'قميص كتان طبيعي راقي - Relaxed French Linen Shirt', 'relaxed-french-linen-shirt', 'قميص مصمم من الكتان الطبيعي الفاخر المنعش خفيف الوزن. مريح جداً في الأيام الحارة ويمتاز بياقة أنيقة وأزرار صدفية متقنة الصنع.', 'shirts', 'قمصان كلاسيك وكاجوال', 590, 750, 'خصم مميز'),
-  ('prod-4', 'بنطلون كارجو ستريت وير - Tactical Relaxed Cargo Pants', 'tactical-relaxed-cargo-pants', 'بنطلون كارجو عصري بجيوب جانبية ذكية ونسيج قطني مرن ضد الانكماش. مصمم بحزام خصر مرن وأربطة سفلية للتحكم في وسع الأرجل.', 'pants', 'بناطيل وكارجو', 650, 800, 'الأكثر مبيعاً')
+  ('prod-abaya-1', 'عباية إسلامية خليجية كريب ملكي سعودي - Royal Modest Abaya', 'royal-modest-abaya', 'عباية خليجية أنيقة مصنوعة من قماش الكريب الملكي المستورد فاحم السواد، واسعة وسابغة لا تشف ولا تصف. تمتاز بقصة مريحة وأكمام كلاسيكية مع لمسات راقية تناسب كافة المناسبات والزيارات اليومية.', 'abayas-dresses', 'عبايات ودريسات محجبات', 790, 950, 'الأكثر مبيعاً'),
+  ('prod-dress-2', 'دريس كلوش محتشم كتان تركي - Elegant Modest Linen Maxi Dress', 'elegant-modest-linen-maxi-dress', 'دريس خروج راقٍ للمحجبات بقصة كلوش ملكية واسعة لا تصف تفاصيل الجسم. مصمم من أجود خيوط الكتان التركي المعالج ضد الانكماش مع بطانة ناعمة تضمن حشمة كاملة وراحة استثنائية.', 'abayas-dresses', 'عبايات ودريسات محجبات', 680, 820, 'وصل حديثاً'),
+  ('prod-khimar-3', 'خمار ماليزي كريب إيروباك مع نقاب تاندة - Malaysian Khimar & Niqab Set', 'malaysian-khimar-niqab-set', 'طقم إسلامي متكامل يجمع بين خمار ماليزي طويل ساتر من الأمام والخلف بقصة مثلثة أنيقة، ونقاب تاندة مقوى من قماش الكريب الكوري سوبر بلاك مع شريط مطاطي مريح للغاية.', 'niqab-khimar', 'نقابات وخمارات إسلامية', 420, 520, 'طقم متكامل'),
+  ('prod-tarha-4', 'طرحة شيفون بيور أوريجينال مع بندانة متصلة - 2-in-1 Chiffon Hijab', '2-in-1-chiffon-hijab', 'الطرحة الأكثر راحة وعملية للمحجبات والجامعة والعمل، تجمع بين بندانة قطن بيور مريحة مع طرحة شيفون كريب تركي منسدلة ثابتة طوال اليوم بدون انزلاق أو الحاجة لدبابيس كثيرة.', 'tarha-scarves', 'طرح وشالات فاخرة', 180, 240, 'الأكثر طلباً'),
+  ('prod-pins-5', 'طقم دبابيس حجاب مغناطيسية فاخرة (4 أزواج) - Magnetic Hijab Pins', 'magnetic-hijab-pins', 'بديل الدبابيس التقليدية لحماية الطرح الحرير والشيفون من النتش والتلف. مغناطيس فائق القوة يثبت الحجاب والنقاب بثبات تام طوال اليوم دون ترك أي ثقوب أو علامات في الأقمشة.', 'accessories', 'إكسسوارات الحجاب وبندانات', 140, 190, 'إكسسوار مميز')
 ON CONFLICT (id) DO NOTHING;
 
--- Seed Color Variants for Product 1
+-- Seed Color Variants for Abaya 1
 INSERT INTO public.color_variants (id, product_id, color_name, hex_code, is_active)
 VALUES
-  ('col-1-black', 'prod-1', 'أسود فاحم', '#18181b', true),
-  ('col-1-sand', 'prod-1', 'بيج رملي', '#d4c5b3', true),
-  ('col-1-navy', 'prod-1', 'أزرق كحلي', '#1e3a8a', false)
+  ('col-ab-black', 'prod-abaya-1', 'أسود ملكي فاحم', '#111111', true),
+  ('col-ab-navy', 'prod-abaya-1', 'كحلي ليلي وقور', '#172554', true),
+  ('col-ab-grey', 'prod-abaya-1', 'رمادي دخاني', '#4b5563', false)
 ON CONFLICT (id) DO NOTHING;
 
--- Seed Photos for Product 1 Colors
+-- Seed Photos for Abaya 1 Colors
 INSERT INTO public.color_photos (id, color_variant_id, url, is_cover, sort_order)
 VALUES
-  ('ph-1-1', 'col-1-black', 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80', true, 1),
-  ('ph-1-2', 'col-1-black', 'https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=800&q=80', false, 2),
-  ('ph-1-3', 'col-1-black', 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=800&q=80', false, 3),
-  ('ph-2-1', 'col-1-sand', 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=800&q=80', true, 1),
-  ('ph-2-2', 'col-1-sand', 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=800&q=80', false, 2),
-  ('ph-3-1', 'col-1-navy', 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=800&q=80', true, 1)
+  ('ph-ab-1', 'col-ab-black', 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=800&q=80', true, 1),
+  ('ph-ab-2', 'col-ab-black', 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?auto=format&fit=crop&w=800&q=80', false, 2),
+  ('ph-ab-3', 'col-ab-navy', 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=80', true, 1),
+  ('ph-ab-4', 'col-ab-grey', 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80', true, 1)
 ON CONFLICT (id) DO NOTHING;
 
--- Seed Sizes for Product 1 Colors
+-- Seed Sizes for Abaya 1 Colors
 INSERT INTO public.size_variants (id, color_variant_id, size_name, is_available)
 VALUES
-  ('sz-1-s', 'col-1-black', 'S', true),
-  ('sz-1-m', 'col-1-black', 'M', true),
-  ('sz-1-l', 'col-1-black', 'L', true),
-  ('sz-1-xl', 'col-1-black', 'XL', true),
-  ('sz-1-os', 'col-1-black', 'Oversize', true),
-  ('sz-2-s', 'col-1-sand', 'S', true),
-  ('sz-2-m', 'col-1-sand', 'M', true),
-  ('sz-2-l', 'col-1-sand', 'L', false),
-  ('sz-2-xl', 'col-1-sand', 'XL', true),
-  ('sz-3-m', 'col-1-navy', 'M', false),
-  ('sz-3-l', 'col-1-navy', 'L', false)
+  ('sz-52', 'col-ab-black', '52 (طول 150-155 سم)', true),
+  ('sz-54', 'col-ab-black', '54 (طول 155-160 سم)', true),
+  ('sz-56', 'col-ab-black', '56 (طول 160-165 سم)', true),
+  ('sz-58', 'col-ab-black', '58 (طول 165-170 سم)', true),
+  ('sz-60', 'col-ab-black', '60 (طول 170-175 سم)', true),
+  ('sz-54-n', 'col-ab-navy', '54 (طول 155-160 سم)', true),
+  ('sz-56-n', 'col-ab-navy', '56 (طول 160-165 سم)', true),
+  ('sz-58-n', 'col-ab-navy', '58 (طول 165-170 سم)', false),
+  ('sz-56-g', 'col-ab-grey', '56 (طول 160-165 سم)', false)
 ON CONFLICT (id) DO NOTHING;

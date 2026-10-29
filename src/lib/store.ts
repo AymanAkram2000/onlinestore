@@ -14,309 +14,379 @@ export const FREE_SHIPPING_THRESHOLD = 999; // الشحن مجاني للطلب�
 
 export const INITIAL_CATEGORIES: Category[] = [
   {
-    id: 'hoodies',
-    name: 'هوديز وسويت شيرت',
-    slug: 'hoodies',
-    image_url: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=600&q=80',
-    description: 'تشكيلة الهوديز الفاخرة بقصات أوفرسايز وخامات شتوية ممتازة'
+    id: 'abayas-dresses',
+    name: 'عبايات ودريسات محجبات',
+    slug: 'abayas-dresses',
+    image_url: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=600&q=80',
+    description: 'عبايات خليجية ملكي ودريسات كلوش قطن وكتان بقصات سابغة ومحتشمة'
   },
   {
-    id: 't-shirts',
-    name: 'تيشيرتات صيفية',
-    slug: 't-shirts',
-    image_url: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=600&q=80',
-    description: 'تيشيرتات قطن مصري 100% بأوزان ثقيلة وملمس فائق النعومة'
+    id: 'niqab-khimar',
+    name: 'نقابات وخمارات إسلامية',
+    slug: 'niqab-khimar',
+    image_url: 'https://images.unsplash.com/photo-1609357605129-26f69add5d6e?auto=format&fit=crop&w=600&q=80',
+    description: 'خمارات ماليزية وسعودية ونقابات تاندة ومقواة بأقمشة كريب مريحة وساترة'
   },
   {
-    id: 'shirts',
-    name: 'قمصان كلاسيك وكاجوال',
-    slug: 'shirts',
-    image_url: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=600&q=80',
-    description: 'قمصان كتان وخامات مريحة تناسب الإطلالات اليومية والرسمية'
+    id: 'tarha-scarves',
+    name: 'طرح وشالات فاخرة',
+    slug: 'tarha-scarves',
+    image_url: 'https://images.unsplash.com/photo-1617922001439-4a2e6562f328?auto=format&fit=crop&w=600&q=80',
+    description: 'طرح شيفون كريب ليزر، قطن كويتي بيور، وشالات كشمير شتوية ناعمة'
   },
   {
-    id: 'pants',
-    name: 'بناطيل وكارجو',
-    slug: 'pants',
-    image_url: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=600&q=80',
-    description: 'بناطيل كارجو وعصرية مصممة لأقصى درجات الراحة والأناقة'
+    id: 'accessories',
+    name: 'إكسسوارات الحجاب وبندانات',
+    slug: 'accessories',
+    image_url: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=600&q=80',
+    description: 'دبابيس مغناطيسية ضد التلف، بندانات قطن سوري، معاصم وجوانتيات شرعية'
   }
 ];
 
 export const INITIAL_PRODUCTS: Product[] = [
   {
-    id: 'prod-1',
-    title: 'هودي أوفرسايز فخم - Minimal Heavyweight Hoodie',
-    slug: 'minimal-heavyweight-hoodie',
-    description: 'هودي مصنع من أجود خيوط القطن الممشط المبطن بالصوف الناعم بوزن 420 GSM. قصة عصرية فضفاضة تعطي مظهراً راقياً ومريحاً ومقاوماً للغسيل المتكرر.',
-    category_id: 'hoodies',
-    category_name: 'هوديز وسويت شيرت',
-    base_price: 690,
-    compare_at_price: 850,
+    id: 'prod-abaya-1',
+    title: 'عباية إسلامية خليجية كريب ملكي سعودي - Royal Modest Abaya',
+    slug: 'royal-modest-abaya',
+    description: 'عباية خليجية أنيقة مصنوعة من قماش الكريب الملكي المستورد فاحم السواد، واسعة وسابغة لا تشف ولا تصف. تمتاز بقصة مريحة وأكمام كلاسيكية مع لمسات راقية تناسب كافة المناسبات والزيارات اليومية.',
+    category_id: 'abayas-dresses',
+    category_name: 'عبايات ودريسات محجبات',
+    base_price: 790,
+    compare_at_price: 950,
     badge: 'الأكثر مبيعاً',
     created_at: new Date().toISOString(),
     colors: [
       {
-        id: 'col-1-black',
-        color_name: 'أسود فاحم',
-        hex_code: '#18181b',
+        id: 'col-ab-black',
+        color_name: 'أسود ملكي فاحم',
+        hex_code: '#111111',
         is_active: true,
         photos: [
           {
-            id: 'ph-1-1',
-            url: 'https://images.unsplash.com/photo-1556905055-8f358a7a47b2?auto=format&fit=crop&w=800&q=80',
+            id: 'ph-ab-1',
+            url: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=800&q=80',
             is_cover: true,
             sort_order: 1
           },
           {
-            id: 'ph-1-2',
-            url: 'https://images.unsplash.com/photo-1578587018452-892bacefd3f2?auto=format&fit=crop&w=800&q=80',
-            is_cover: false,
-            sort_order: 2
-          },
-          {
-            id: 'ph-1-3',
-            url: 'https://images.unsplash.com/photo-1509967419530-da38b4704bc6?auto=format&fit=crop&w=800&q=80',
-            is_cover: false,
-            sort_order: 3
-          }
-        ],
-        sizes: [
-          { id: 'sz-1-s', size_name: 'S', is_available: true },
-          { id: 'sz-1-m', size_name: 'M', is_available: true },
-          { id: 'sz-1-l', size_name: 'L', is_available: true },
-          { id: 'sz-1-xl', size_name: 'XL', is_available: true },
-          { id: 'sz-1-os', size_name: 'Oversize', is_available: true }
-        ]
-      },
-      {
-        id: 'col-1-sand',
-        color_name: 'بيج رملي',
-        hex_code: '#d4c5b3',
-        is_active: true,
-        photos: [
-          {
-            id: 'ph-2-1',
-            url: 'https://images.unsplash.com/photo-1543163521-1bf539c55dd2?auto=format&fit=crop&w=800&q=80',
-            is_cover: true,
-            sort_order: 1
-          },
-          {
-            id: 'ph-2-2',
-            url: 'https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?auto=format&fit=crop&w=800&q=80',
+            id: 'ph-ab-2',
+            url: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?auto=format&fit=crop&w=800&q=80',
             is_cover: false,
             sort_order: 2
           }
         ],
         sizes: [
-          { id: 'sz-2-s', size_name: 'S', is_available: true },
-          { id: 'sz-2-m', size_name: 'M', is_available: true },
-          { id: 'sz-2-l', size_name: 'L', is_available: false },
-          { id: 'sz-2-xl', size_name: 'XL', is_available: true }
+          { id: 'sz-52', size_name: '52 (طول 150-155 سم)', is_available: true },
+          { id: 'sz-54', size_name: '54 (طول 155-160 سم)', is_available: true },
+          { id: 'sz-56', size_name: '56 (طول 160-165 سم)', is_available: true },
+          { id: 'sz-58', size_name: '58 (طول 165-170 سم)', is_available: true },
+          { id: 'sz-60', size_name: '60 (طول 170-175 سم)', is_available: true }
         ]
       },
       {
-        id: 'col-1-navy',
-        color_name: 'أزرق كحلي',
-        hex_code: '#1e3a8a',
-        is_active: false,
+        id: 'col-ab-navy',
+        color_name: 'كحلي ليلي وقور',
+        hex_code: '#172554',
+        is_active: true,
         photos: [
           {
-            id: 'ph-3-1',
-            url: 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?auto=format&fit=crop&w=800&q=80',
+            id: 'ph-ab-3',
+            url: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=80',
             is_cover: true,
             sort_order: 1
           }
         ],
         sizes: [
-          { id: 'sz-3-m', size_name: 'M', is_available: false },
-          { id: 'sz-3-l', size_name: 'L', is_available: false }
+          { id: 'sz-54-n', size_name: '54 (طول 155-160 سم)', is_available: true },
+          { id: 'sz-56-n', size_name: '56 (طول 160-165 سم)', is_available: true },
+          { id: 'sz-58-n', size_name: '58 (طول 165-170 سم)', is_available: false }
+        ]
+      },
+      {
+        id: 'col-ab-grey',
+        color_name: 'رمادي دخاني',
+        hex_code: '#4b5563',
+        is_active: false, // معطل لتجربة اللون الباهت
+        photos: [
+          {
+            id: 'ph-ab-4',
+            url: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80',
+            is_cover: true,
+            sort_order: 1
+          }
+        ],
+        sizes: [
+          { id: 'sz-56-g', size_name: '56 (طول 160-165 سم)', is_available: false }
         ]
       }
     ]
   },
   {
-    id: 'prod-2',
-    title: 'تيشيرت بيسك قطن مصري 240 GSM - Premium Heavyweight Tee',
-    slug: 'premium-heavyweight-tee',
-    description: 'قطعة أساسية لا غنى عنها في خزانة ملابسك، مصنوعة من قطن مصري أصيل طويل التيلة بنسبة 100%. ياقة متينة وياقة مزدوجة الخياطة تحافظ على مظهرها بعد كل غسلة.',
-    category_id: 't-shirts',
-    category_name: 'تيشيرتات صيفية',
-    base_price: 390,
-    compare_at_price: 480,
+    id: 'prod-dress-2',
+    title: 'دريس كلوش محتشم كتان تركي - Elegant Modest Linen Maxi Dress',
+    slug: 'elegant-modest-linen-maxi-dress',
+    description: 'دريس خروج راقٍ للمحجبات بقصة كلوش ملكية واسعة لا تصف تفاصيل الجسم. مصمم من أجود خيوط الكتان التركي المعالج ضد الانكماش مع بطانة ناعمة تضمن حشمة كاملة وراحة استثنائية.',
+    category_id: 'abayas-dresses',
+    category_name: 'عبايات ودريسات محجبات',
+    base_price: 680,
+    compare_at_price: 820,
     badge: 'وصل حديثاً',
     created_at: new Date().toISOString(),
     colors: [
       {
-        id: 'col-2-white',
-        color_name: 'أبيض ناصع',
-        hex_code: '#ffffff',
+        id: 'col-dr-beige',
+        color_name: 'بيج كشميري راقٍ',
+        hex_code: '#d4b8a5',
         is_active: true,
         photos: [
           {
-            id: 'ph-4-1',
-            url: 'https://images.unsplash.com/photo-1521572267360-ee0c2909d518?auto=format&fit=crop&w=800&q=80',
+            id: 'ph-dr-1',
+            url: 'https://images.unsplash.com/photo-1539109136881-3be0616acf4b?auto=format&fit=crop&w=800&q=80',
             is_cover: true,
             sort_order: 1
           },
           {
-            id: 'ph-4-2',
-            url: 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?auto=format&fit=crop&w=800&q=80',
+            id: 'ph-dr-2',
+            url: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80',
             is_cover: false,
             sort_order: 2
           }
         ],
         sizes: [
-          { id: 'sz-4-s', size_name: 'S', is_available: true },
-          { id: 'sz-4-m', size_name: 'M', is_available: true },
-          { id: 'sz-4-l', size_name: 'L', is_available: true },
-          { id: 'sz-4-xl', size_name: 'XL', is_available: true }
+          { id: 'sz-dr-1', size_name: 'مقاس 1 (يلبس حتى 70 كجم)', is_available: true },
+          { id: 'sz-dr-2', size_name: 'مقاس 2 (يلبس حتى 90 كجم)', is_available: true },
+          { id: 'sz-dr-3', size_name: 'مقاس 3 (يلبس حتى 110 كجم)', is_available: true }
         ]
       },
       {
-        id: 'col-2-olive',
-        color_name: 'زيتي عسكري',
-        hex_code: '#3f4f3f',
+        id: 'col-dr-olive',
+        color_name: 'زيتي زمرّدي',
+        hex_code: '#2d4030',
         is_active: true,
         photos: [
           {
-            id: 'ph-5-1',
-            url: 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=800&q=80',
+            id: 'ph-dr-3',
+            url: 'https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=800&q=80',
             is_cover: true,
             sort_order: 1
           }
         ],
         sizes: [
-          { id: 'sz-5-m', size_name: 'M', is_available: true },
-          { id: 'sz-5-l', size_name: 'L', is_available: true },
-          { id: 'sz-5-xl', size_name: 'XL', is_available: false }
+          { id: 'sz-dr-1-o', size_name: 'مقاس 1 (يلبس حتى 70 كجم)', is_available: true },
+          { id: 'sz-dr-2-o', size_name: 'مقاس 2 (يلبس حتى 90 كجم)', is_available: false },
+          { id: 'sz-dr-3-o', size_name: 'مقاس 3 (يلبس حتى 110 كجم)', is_available: true }
         ]
       },
       {
-        id: 'col-2-black',
-        color_name: 'أسود فحمي',
-        hex_code: '#18181b',
-        is_active: true,
+        id: 'col-dr-blue',
+        color_name: 'أزرق كحلي داكن',
+        hex_code: '#1e3a8a',
+        is_active: false, // معطل
         photos: [
           {
-            id: 'ph-6-1',
-            url: 'https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?auto=format&fit=crop&w=800&q=80',
+            id: 'ph-dr-4',
+            url: 'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?auto=format&fit=crop&w=800&q=80',
             is_cover: true,
             sort_order: 1
           }
         ],
         sizes: [
-          { id: 'sz-6-m', size_name: 'M', is_available: true },
-          { id: 'sz-6-l', size_name: 'L', is_available: true }
+          { id: 'sz-dr-2-b', size_name: 'مقاس 2 (يلبس حتى 90 كجم)', is_available: false }
         ]
       }
     ]
   },
   {
-    id: 'prod-3',
-    title: 'قميص كتان طبيعي راقي - Relaxed French Linen Shirt',
-    slug: 'relaxed-french-linen-shirt',
-    description: 'قميص مصمم من الكتان الطبيعي الفاخر المنعش خفيف الوزن. مريح جداً في الأيام الحارة ويمتاز بياقة أنيقة وأزرار صدفية متقنة الصنع.',
-    category_id: 'shirts',
-    category_name: 'قمصان كلاسيك وكاجوال',
-    base_price: 590,
-    compare_at_price: 750,
-    badge: 'خصم مميز',
+    id: 'prod-khimar-3',
+    title: 'خمار ماليزي كريب إيروباك مع نقاب تاندة - Malaysian Khimar & Niqab Set',
+    slug: 'malaysian-khimar-niqab-set',
+    description: 'طقم إسلامي متكامل يجمع بين خمار ماليزي طويل ساتر من الأمام والخلف بقصة مثلثة أنيقة، ونقاب تاندة مقوى من قماش الكريب الكوري سوبر بلاك مع شريط مطاطي مريح للغاية.',
+    category_id: 'niqab-khimar',
+    category_name: 'نقابات وخمارات إسلامية',
+    base_price: 420,
+    compare_at_price: 520,
+    badge: 'طقم متكامل',
     created_at: new Date().toISOString(),
     colors: [
       {
-        id: 'col-3-beige',
-        color_name: 'كتاني طبيعي',
-        hex_code: '#f3ede2',
+        id: 'col-kh-black',
+        color_name: 'أسود سوبر بلاك',
+        hex_code: '#0a0a0a',
         is_active: true,
         photos: [
           {
-            id: 'ph-7-1',
-            url: 'https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=800&q=80',
+            id: 'ph-kh-1',
+            url: 'https://images.unsplash.com/photo-1609357605129-26f69add5d6e?auto=format&fit=crop&w=800&q=80',
             is_cover: true,
             sort_order: 1
-          },
-          {
-            id: 'ph-7-2',
-            url: 'https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?auto=format&fit=crop&w=800&q=80',
-            is_cover: false,
-            sort_order: 2
           }
         ],
         sizes: [
-          { id: 'sz-7-s', size_name: 'S', is_available: true },
-          { id: 'sz-7-m', size_name: 'M', is_available: true },
-          { id: 'sz-7-l', size_name: 'L', is_available: true },
-          { id: 'sz-7-xl', size_name: 'XL', is_available: true }
+          { id: 'sz-kh-free', size_name: 'Free Size', is_available: true }
         ]
       },
       {
-        id: 'col-3-sky',
-        color_name: 'أزرق سماوي',
-        hex_code: '#bae6fd',
-        is_active: false,
+        id: 'col-kh-dusty',
+        color_name: 'كشمير ترابي هادئ',
+        hex_code: '#c89f9c',
+        is_active: true,
         photos: [
           {
-            id: 'ph-8-1',
-            url: 'https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=800&q=80',
+            id: 'ph-kh-2',
+            url: 'https://images.unsplash.com/photo-1617922001439-4a2e6562f328?auto=format&fit=crop&w=800&q=80',
             is_cover: true,
             sort_order: 1
           }
         ],
         sizes: [
-          { id: 'sz-8-m', size_name: 'M', is_available: false }
+          { id: 'sz-kh-free-d', size_name: 'Free Size', is_available: true }
+        ]
+      },
+      {
+        id: 'col-kh-sand',
+        color_name: 'بيج رملي طبيعي',
+        hex_code: '#d8cbb8',
+        is_active: true,
+        photos: [
+          {
+            id: 'ph-kh-3',
+            url: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=800&q=80',
+            is_cover: true,
+            sort_order: 1
+          }
+        ],
+        sizes: [
+          { id: 'sz-kh-free-s', size_name: 'Free Size', is_available: false } // نفد
         ]
       }
     ]
   },
   {
-    id: 'prod-4',
-    title: 'بنطلون كارجو ستريت وير - Tactical Relaxed Cargo Pants',
-    slug: 'tactical-relaxed-cargo-pants',
-    description: 'بنطلون كارجو عصري بجيوب جانبية ذكية ونسيج قطني مرن ضد الانكماش. مصمم بحزام خصر مرن وأربطة سفلية للتحكم في وسع الأرجل.',
-    category_id: 'pants',
-    category_name: 'بناطيل وكارجو',
-    base_price: 650,
-    compare_at_price: 800,
-    badge: 'الأكثر مبيعاً',
+    id: 'prod-tarha-4',
+    title: 'طرحة شيفون بيور أوريجينال مع بندانة متصلة - 2-in-1 Chiffon Hijab',
+    slug: '2-in-1-chiffon-hijab',
+    description: 'الطرحة الأكثر راحة وعملية للمحجبات والجامعة والعمل، تجمع بين بندانة قطن بيور مريحة مع طرحة شيفون كريب تركي منسدلة ثابتة طوال اليوم بدون انزلاق أو الحاجة لدبابيس كثيرة.',
+    category_id: 'tarha-scarves',
+    category_name: 'طرح وشالات فاخرة',
+    base_price: 180,
+    compare_at_price: 240,
+    badge: 'الأكثر طلباً',
     created_at: new Date().toISOString(),
     colors: [
       {
-        id: 'col-4-black',
-        color_name: 'أسود داكن',
-        hex_code: '#18181b',
+        id: 'col-tr-white',
+        color_name: 'أوف وايت / سكري',
+        hex_code: '#fbf8f2',
         is_active: true,
         photos: [
           {
-            id: 'ph-9-1',
-            url: 'https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?auto=format&fit=crop&w=800&q=80',
+            id: 'ph-tr-1',
+            url: 'https://images.unsplash.com/photo-1617922001439-4a2e6562f328?auto=format&fit=crop&w=800&q=80',
             is_cover: true,
             sort_order: 1
           }
         ],
         sizes: [
-          { id: 'sz-9-30', size_name: '30', is_available: true },
-          { id: 'sz-9-32', size_name: '32', is_available: true },
-          { id: 'sz-9-34', size_name: '34', is_available: true },
-          { id: 'sz-9-36', size_name: '36', is_available: false }
+          { id: 'sz-tr-one', size_name: 'No Size', is_available: true }
         ]
       },
       {
-        id: 'col-4-grey',
-        color_name: 'رمادي حجري',
-        hex_code: '#6b7280',
+        id: 'col-tr-pink',
+        color_name: 'كشمير وردي هادئ',
+        hex_code: '#dba39a',
         is_active: true,
         photos: [
           {
-            id: 'ph-10-1',
-            url: 'https://images.unsplash.com/photo-1541099649105-f69ad21f3246?auto=format&fit=crop&w=800&q=80',
+            id: 'ph-tr-2',
+            url: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=800&q=80',
             is_cover: true,
             sort_order: 1
           }
         ],
         sizes: [
-          { id: 'sz-10-32', size_name: '32', is_available: true },
-          { id: 'sz-10-34', size_name: '34', is_available: true }
+          { id: 'sz-tr-one-p', size_name: 'No Size', is_available: true }
+        ]
+      },
+      {
+        id: 'col-tr-black',
+        color_name: 'أسود فاحم كلاسيكي',
+        hex_code: '#171717',
+        is_active: true,
+        photos: [
+          {
+            id: 'ph-tr-3',
+            url: 'https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?auto=format&fit=crop&w=800&q=80',
+            is_cover: true,
+            sort_order: 1
+          }
+        ],
+        sizes: [
+          { id: 'sz-tr-one-b', size_name: 'No Size', is_available: true }
+        ]
+      },
+      {
+        id: 'col-tr-mint',
+        color_name: 'مينت جرين هادئ',
+        hex_code: '#a3b899',
+        is_active: false, // معطل لتجربة اللون الباهت
+        photos: [
+          {
+            id: 'ph-tr-4',
+            url: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80',
+            is_cover: true,
+            sort_order: 1
+          }
+        ],
+        sizes: [
+          { id: 'sz-tr-one-m', size_name: 'No Size', is_available: false }
+        ]
+      }
+    ]
+  },
+  {
+    id: 'prod-pins-5',
+    title: 'طقم دبابيس حجاب مغناطيسية فاخرة (4 أزواج) - Magnetic Hijab Pins',
+    slug: 'magnetic-hijab-pins',
+    description: 'بديل الدبابيس التقليدية لحماية الطرح الحرير والشيفون من النتش والتلف. مغناطيس فائق القوة يثبت الحجاب والنقاب بثبات تام طوال اليوم دون ترك أي ثقوب أو علامات في الأقمشة.',
+    category_id: 'accessories',
+    category_name: 'إكسسوارات الحجاب وبندانات',
+    base_price: 140,
+    compare_at_price: 190,
+    badge: 'إكسسوار مميز',
+    created_at: new Date().toISOString(),
+    colors: [
+      {
+        id: 'col-pin-classic',
+        color_name: 'ألوان كلاسيك (ذهبي وفضي وأسود ومطفي)',
+        hex_code: '#c5a059',
+        is_active: true,
+        photos: [
+          {
+            id: 'ph-pin-1',
+            url: 'https://images.unsplash.com/photo-1594938298603-c8148c4dae35?auto=format&fit=crop&w=800&q=80',
+            is_cover: true,
+            sort_order: 1
+          }
+        ],
+        sizes: [
+          { id: 'sz-pin-set', size_name: 'No Size', is_available: true }
+        ]
+      },
+      {
+        id: 'col-pin-pastel',
+        color_name: 'ألوان باستيل ناعمة',
+        hex_code: '#e2d4c9',
+        is_active: true,
+        photos: [
+          {
+            id: 'ph-pin-2',
+            url: 'https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80',
+            is_cover: true,
+            sort_order: 1
+          }
+        ],
+        sizes: [
+          { id: 'sz-pin-set-2', size_name: 'No Size', is_available: true }
         ]
       }
     ]
@@ -324,9 +394,9 @@ export const INITIAL_PRODUCTS: Product[] = [
 ];
 
 const STORAGE_KEYS = {
-  PRODUCTS: 'apparel_store_products_v1',
-  CATEGORIES: 'apparel_store_categories_v1',
-  ORDERS: 'apparel_store_orders_v1',
+  PRODUCTS: 'apparel_store_products_v2', // v2 to refresh localStorage automatically!
+  CATEGORIES: 'apparel_store_categories_v2',
+  ORDERS: 'apparel_store_orders_v2',
 };
 
 export class StoreRepository {
@@ -566,7 +636,7 @@ export class StoreRepository {
       ? 'الدفع عند الاستلام' 
       : order.payment_method === 'instapay' ? 'تحويل إنستاباي' : 'فودافون كاش';
 
-    const text = `السلام عليكم، أود تأكيد طلبي من المتجر:\n` +
+    const text = `السلام عليكم ورحمة الله، أود تأكيد طلبي من المتجر:\n` +
       `📦 رقم الطلب: #${order.order_number}\n` +
       `👤 العميل: ${order.customer_name}\n` +
       `📞 رقم الهاتف: ${order.customer_phone}\n` +
@@ -577,7 +647,7 @@ export class StoreRepository {
       `🚚 الشحن: ${order.shipping_fee === 0 ? 'مجاني 🎉' : `${order.shipping_fee} ج.م`}\n` +
       `💰 الإجمالي النهائي: ${order.total_amount} ج.م\n` +
       (order.notes ? `📝 ملاحظات: ${order.notes}\n` : '') +
-      `\nشكراً لكم!`;
+      `\nشكراً لكم وبارك الله فيكم!`;
 
     const encoded = encodeURIComponent(text);
     return `https://wa.me/${storePhone.replace(/[^0-9]/g, '')}?text=${encoded}`;

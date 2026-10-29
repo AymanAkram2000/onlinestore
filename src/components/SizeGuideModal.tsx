@@ -9,7 +9,7 @@ interface SizeGuideModalProps {
   categoryName?: string;
 }
 
-export default function SizeGuideModal({ isOpen, onClose, categoryName = 'الملابس' }: SizeGuideModalProps) {
+export default function SizeGuideModal({ isOpen, onClose, categoryName = 'العبايات والدريسات' }: SizeGuideModalProps) {
   if (!isOpen) return null;
 
   return (
@@ -24,12 +24,12 @@ export default function SizeGuideModal({ isOpen, onClose, categoryName = 'الم
       <div className="relative bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-neutral-200 z-10 animate-in zoom-in-95 duration-200">
         <div className="flex items-center justify-between border-b border-neutral-100 pb-4 mb-6">
           <div className="flex items-center gap-2.5">
-            <div className="w-10 h-10 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-800">
+            <div className="w-10 h-10 rounded-full bg-rose-50 flex items-center justify-center text-rose-700">
               <Ruler className="w-5 h-5" />
             </div>
             <div>
-              <h3 className="text-lg font-bold text-neutral-900">جدول المقاسات الدقيق</h3>
-              <p className="text-xs text-neutral-500">القياسات بالسنتمتر (cm) لأفضل ملاءمة لمقاسك</p>
+              <h3 className="text-lg font-bold text-neutral-900">دليل مقاسات العبايات والدريسات</h3>
+              <p className="text-xs text-neutral-500">اختر مقاس العباية الخليجية بناءً على طولك الإجمالي بالسنتمتر</p>
             </div>
           </div>
           <button
@@ -40,69 +40,91 @@ export default function SizeGuideModal({ isOpen, onClose, categoryName = 'الم
           </button>
         </div>
 
-        {/* Size Chart Table */}
-        <div className="overflow-x-auto rounded-xl border border-neutral-200">
-          <table className="w-full text-center text-xs text-neutral-800">
-            <thead className="bg-neutral-50 border-b border-neutral-200 font-bold text-neutral-900">
-              <tr>
-                <th className="py-3 px-3">المقاس</th>
-                <th className="py-3 px-3">عرض الصدر (سم)</th>
-                <th className="py-3 px-3">الطول الكلي (سم)</th>
-                <th className="py-3 px-3">الوزن التقريبي (كجم)</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-neutral-100 font-medium">
-              <tr>
-                <td className="py-3 px-3 font-bold bg-neutral-50/50">Small (S)</td>
-                <td className="py-3 px-3">52 - 54</td>
-                <td className="py-3 px-3">68</td>
-                <td className="py-3 px-3">50 - 65 كجم</td>
-              </tr>
-              <tr>
-                <td className="py-3 px-3 font-bold bg-neutral-50/50">Medium (M)</td>
-                <td className="py-3 px-3">55 - 57</td>
-                <td className="py-3 px-3">71</td>
-                <td className="py-3 px-3">65 - 75 كجم</td>
-              </tr>
-              <tr>
-                <td className="py-3 px-3 font-bold bg-neutral-50/50">Large (L)</td>
-                <td className="py-3 px-3">58 - 60</td>
-                <td className="py-3 px-3">74</td>
-                <td className="py-3 px-3">75 - 85 كجم</td>
-              </tr>
-              <tr>
-                <td className="py-3 px-3 font-bold bg-neutral-50/50">X-Large (XL)</td>
-                <td className="py-3 px-3">61 - 63</td>
-                <td className="py-3 px-3">77</td>
-                <td className="py-3 px-3">85 - 95 كجم</td>
-              </tr>
-              <tr>
-                <td className="py-3 px-3 font-bold bg-neutral-50/50">2X-Large (XXL)</td>
-                <td className="py-3 px-3">64 - 67</td>
-                <td className="py-3 px-3">80</td>
-                <td className="py-3 px-3">95 - 110 كجم</td>
-              </tr>
-              <tr className="bg-amber-50/40 text-amber-900 font-bold">
-                <td className="py-3 px-3">Oversize (أوفرسايز)</td>
-                <td className="py-3 px-3">62 - 68</td>
-                <td className="py-3 px-3">75 - 80</td>
-                <td className="py-3 px-3">قصة مريحة واسعة تناسب الجميع</td>
-              </tr>
-            </tbody>
-          </table>
+        {/* Abaya Sizing Chart */}
+        <div className="space-y-4">
+          <span className="text-xs font-bold text-neutral-800 block">1. جدول مقاسات العبايات الخليجية (حسب الطول):</span>
+          <div className="overflow-x-auto rounded-xl border border-neutral-200">
+            <table className="w-full text-center text-xs text-neutral-800">
+              <thead className="bg-neutral-50 border-b border-neutral-200 font-bold text-neutral-900">
+                <tr>
+                  <th className="py-2.5 px-3">رقم المقاس</th>
+                  <th className="py-2.5 px-3">طول العباية (بوصة / سم)</th>
+                  <th className="py-2.5 px-3">طول قامتك المناسب</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-neutral-100 font-medium">
+                <tr>
+                  <td className="py-2.5 px-3 font-bold bg-neutral-50/50">مقاس 52</td>
+                  <td className="py-2.5 px-3">132 سم (52 بوصة)</td>
+                  <td className="py-2.5 px-3">150 - 155 سم</td>
+                </tr>
+                <tr>
+                  <td className="py-2.5 px-3 font-bold bg-neutral-50/50">مقاس 54</td>
+                  <td className="py-2.5 px-3">137 سم (54 بوصة)</td>
+                  <td className="py-2.5 px-3">155 - 160 سم</td>
+                </tr>
+                <tr>
+                  <td className="py-2.5 px-3 font-bold bg-neutral-50/50">مقاس 56</td>
+                  <td className="py-2.5 px-3">142 سم (56 بوصة)</td>
+                  <td className="py-2.5 px-3">160 - 165 سم</td>
+                </tr>
+                <tr>
+                  <td className="py-2.5 px-3 font-bold bg-neutral-50/50">مقاس 58</td>
+                  <td className="py-2.5 px-3">147 سم (58 بوصة)</td>
+                  <td className="py-2.5 px-3">165 - 170 سم</td>
+                </tr>
+                <tr>
+                  <td className="py-2.5 px-3 font-bold bg-neutral-50/50">مقاس 60</td>
+                  <td className="py-2.5 px-3">152 سم (60 بوصة)</td>
+                  <td className="py-2.5 px-3">170 - 175 سم</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          {/* Dresses Sizing Chart */}
+          <span className="text-xs font-bold text-neutral-800 block pt-2">2. جدول مقاسات الدريسات الكلوش (حسب الوزن):</span>
+          <div className="overflow-x-auto rounded-xl border border-neutral-200">
+            <table className="w-full text-center text-xs text-neutral-800">
+              <thead className="bg-neutral-50 border-b border-neutral-200 font-bold text-neutral-900">
+                <tr>
+                  <th className="py-2 px-3">المقاس</th>
+                  <th className="py-2 px-3">محيط الصدر</th>
+                  <th className="py-2 px-3">الوزن التقريبي</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-neutral-100 font-medium">
+                <tr>
+                  <td className="py-2 px-3 font-bold">مقاس 1</td>
+                  <td className="py-2 px-3">حتى 108 سم</td>
+                  <td className="py-2 px-3">من 50 إلى 70 كجم</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-3 font-bold">مقاس 2</td>
+                  <td className="py-2 px-3">حتى 118 سم</td>
+                  <td className="py-2 px-3">من 70 إلى 90 كجم</td>
+                </tr>
+                <tr>
+                  <td className="py-2 px-3 font-bold">مقاس 3</td>
+                  <td className="py-2 px-3">حتى 130 سم</td>
+                  <td className="py-2 px-3">من 90 إلى 110 كجم</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
 
         {/* Tip box */}
-        <div className="mt-5 p-3.5 bg-neutral-50 rounded-2xl border border-neutral-200 text-xs text-neutral-600 space-y-1">
-          <p className="font-bold text-neutral-900">💡 نصيحة لاختيار المقاس المثالي:</p>
-          <p>قم بقياس أفضل تيشيرت أو هودي لديك من تحت الإبط إلى الإبط الآخر وقارنه بالجدول أعلاه لضمان مقاس مناسب 100%.</p>
+        <div className="mt-5 p-3.5 bg-rose-50/60 rounded-2xl border border-rose-200/80 text-xs text-rose-900 space-y-1">
+          <p className="font-bold">🌸 ملاحظة الحشمة والأناقة:</p>
+          <p>جميع عباياتنا ودريساتنا مصممة بقصات فضفاضة ومحتشمة (Over-Free Cut) بحيث لا تحدد الجسم إطلاقاً، وتمنحك وقاراً وحرية تامة في الحركة.</p>
         </div>
 
         <button
           onClick={onClose}
           className="mt-6 w-full py-3 bg-neutral-950 text-white rounded-xl text-xs font-bold hover:bg-neutral-800 transition"
         >
-          فهمت ذلك، العودة للاختيار
+          حسناً، فهمت المقاس المناسب
         </button>
       </div>
     </div>

@@ -35,15 +35,15 @@ function CatalogContent() {
       {/* Title & Introduction */}
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-neutral-200 pb-8 mb-8">
         <div>
-          <div className="flex items-center gap-2 text-xs font-bold text-amber-600 mb-2">
-            <Sparkles className="w-4 h-4" />
-            <span>تشكيلة خريف وشتاء 2026 الحصرية</span>
+          <div className="flex items-center gap-2 text-xs font-bold text-rose-700 mb-2">
+            <Sparkles className="w-4 h-4 text-amber-500" />
+            <span>تشكيلة حياء لأزياء المحجبات والمنقبات 2026</span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-extrabold text-neutral-950 tracking-tight">
-            جميع المنتجات والتشكيلات
+            جميع المنتجات والتشكيلات المحتشمة
           </h1>
           <p className="text-sm text-neutral-500 mt-2 max-w-xl leading-relaxed">
-            استكشف أحدث تصاميم الملابس الفاخرة المصنوعة من القطن المصري الممشط والكتان الطبيعي بأعلى مواصفات الجودة العالمية.
+            استكشفي أحدث العبايات الخليجية، فساتين ودريسات الخروج، الخمارات الماليزية، ومجموعات الطرح والإكسسوارات بأعلى جودة.
           </p>
         </div>
 
@@ -53,7 +53,7 @@ function CatalogContent() {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="ابحث عن هودي، تيشيرت، قميص..."
+            placeholder="ابحثي عن عباية، دريس، خمار، طرحة..."
             className="w-full pl-10 pr-4 py-2.5 rounded-full border border-neutral-300 bg-white text-xs font-medium focus:outline-hidden focus:ring-2 focus:ring-neutral-950 transition"
           />
           <Search className="w-4 h-4 text-neutral-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
@@ -72,7 +72,7 @@ function CatalogContent() {
                 : 'bg-white border border-neutral-200 text-neutral-700 hover:border-neutral-400'
             }`}
           >
-            جميع الملابس
+            جميع المعروضات
           </button>
 
           {categories.map((cat) => (
@@ -109,8 +109,8 @@ function CatalogContent() {
       {/* Products Grid */}
       {products.length === 0 ? (
         <div className="text-center py-20 bg-white rounded-3xl border border-neutral-200 p-8">
-          <p className="text-base font-bold text-neutral-800 mb-2">لا توجد منتجات مطابقة لبحثك</p>
-          <p className="text-xs text-neutral-500 mb-6">جرّب تغيير كلمات البحث أو اختر قسماً آخر من الأقسام أعلاه.</p>
+          <p className="text-base font-bold text-neutral-800 mb-2">لا توجد قطع مطابقة لبحثك</p>
+          <p className="text-xs text-neutral-500 mb-6">جرّبي البحث باسم آخر أو اضغطي على زر جميع المعروضات أعلاه.</p>
           <button
             onClick={() => { setSelectedCategory('all'); setSearchQuery(''); }}
             className="px-5 py-2.5 bg-neutral-900 text-white text-xs font-bold rounded-full hover:bg-neutral-800 transition"

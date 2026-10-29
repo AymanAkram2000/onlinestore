@@ -7,9 +7,9 @@ import CartDrawer from '@/components/CartDrawer';
 import ToastBanner from '@/components/ToastBanner';
 
 export const metadata: Metadata = {
-  title: 'ATELIER | متجر ملابس وأزياء فاخرة',
-  description: 'متجر أزياء عصري يقدم تشكيلة حصرية من الهوديز والتيشيرتات والقمصان المصنوعة من القطن المصري الممشط والكتان الطبيعي.',
-  keywords: ['متجر ملابس', 'هوديز أوفرسايز', 'تيشيرتات قطن مصري', 'أزياء فاخرة', 'ملابس رجالي', 'أناقة عصرية'],
+  title: 'HAYAA | متجر أزياء المحجبات والمنقبات والطرح الفاخرة',
+  description: 'متجر حياء لأزياء المحجبات والمنقبات: عبايات كريب خليجية، دريسات كلوش محتشمة، خمارات ونقابات ماليزية، طرح شيفون كريب وإكسسوارات الحجاب.',
+  keywords: ['ملابس محجبات', 'عبايات خليجي', 'نقابات', 'خمار ماليزي', 'طرح شيفون', 'دريسات محتشمة', 'إكسسوارات حجاب', 'حجاب شرعي'],
 };
 
 export default function RootLayout({
@@ -27,7 +27,7 @@ export default function RootLayout({
           rel="stylesheet" 
         />
       </head>
-      <body className="min-h-screen flex flex-col justify-between bg-[#fafafa] text-neutral-900 antialiased selection:bg-neutral-900 selection:text-white">
+      <body className="min-h-screen flex flex-col justify-between bg-[#fafafa] text-neutral-900 antialiased selection:bg-rose-900 selection:text-white">
         <CartProvider>
           <Navbar />
           <div className="flex-1">
